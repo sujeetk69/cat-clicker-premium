@@ -7,10 +7,25 @@
 </head>
 <body>
     <div id="header">
-        Cat Clicker Premium
+        <div id="app_name">Cat Clicker Premium</div>
+        <div id="menu">
+            <button id="admin_button" class="menu_item">Admin</button>
+            <button class="menu_item">User</button>
+        </div>
     </div>
 
     <div id="content">
+
+        <div id="cat_edit_div">
+            <form id="cat_edit_form">
+                Cat Name: &nbsp;&nbsp;&nbsp;<input type="text" name="cat_name_input" readonly></input><br>
+                Image Path: &nbsp;<input type="text" name="image_path_input"></input><br>
+                Click Count: <input type="number" name="click_count_input"></input><br>
+                <input type="button" value="Save" class="menu_item" name="ok"></input><br>
+                <input type="button" value="Cancel" class="menu_item" name="cancel"></input>
+            </form>
+        </div>
+
         <div id="cat_list">
 
         </div>
@@ -25,7 +40,8 @@
             <div id="cat_count"></div>
         </div>
     </div>
+    <!---->
     <script src="js/controller.js"></script>
-
+    <!---->
 </body>
 </html>

@@ -27,6 +27,17 @@ Model.prototype.loadCats = function() {
         var catName = "Cat" + catIndex;
         this.allCats[i] = new Cat(catName, "images\\" + catName + ".jpg");
     }
+
+Model.prototype.editCat = function(cat) {
+    for (var i=0; this.allCats.length; i++) {
+        if(cat.name === this.allCats[i].name) {
+            this.allCats[i].imagePath = cat.imagePath;
+            this.allCats[i].clickCount = cat.clickCount;
+            return true;
+        }
+    }
+    return false;
+}
 }
 
 
@@ -44,6 +55,7 @@ var catListView = {
             catListItem.innerHTML = cat.name;
             catListItem.onclick = function() {
                 controller.setCurrentCat(cat);
+                catEditView.hide();
             }
             console.log(this.catListElem);
             x= this.catListElem;
@@ -74,7 +86,44 @@ var catView = {
     }
 };
 
+var catEditView = {
+    init: function() {
+        this.catEditDiv = document.getElementById("cat_edit_div");
+        this.catEditForm = document.getElementById("cat_edit_form");
+        this.catNameInput = this.catEditForm["cat_name_input"];
+        this.imagePathInput = this.catEditForm["image_path_input"];
+        this.clickCountInput = this.catEditForm["click_count_input"];
+        this.okButton = this.catEditForm["ok"];
+        this.cancelButton = this.catEditForm["cancel"];
+        this.adminButton = document.getElementById("admin_button");
 
+
+    },
+
+    render: function() {
+        this.adminButton.addEventListener("click", function() {
+            var cat = controller.getCurrentCat();
+            catEditView.catNameInput.value = cat.name;
+            catEditView.imagePathInput.value = cat.imagePath;
+            catEditView.clickCountInput.value = cat.clickCount;
+            catEditView.catEditDiv.style.visibility = "visible";
+        });
+
+        this.cancelButton.addEventListener("click", function() {
+            catEditView.catEditDiv.style.visibility = "hidden";
+        });
+
+        this.okButton.addEventListener("click", function() {
+            var cat = new Cat(catEditView.catNameInput.value, catEditView.imagePathInput.value);
+            cat.clickCount = catEditView.clickCountInput.value;
+            controller.editCat(cat);
+        });
+    },
+
+    hide: function() {
+        this.catEditDiv.style.visibility = "hidden";
+    },
+}
 
 
 /* Controller */
@@ -93,6 +142,9 @@ var controller = {
         //Initialize the cat view
         catView.init();
         catView.render();
+
+        catEditView.init();
+        catEditView.render();
     },
 
     getCurrentCat: function() {
@@ -112,7 +164,23 @@ var controller = {
         model.currentCat = cat;
         catView.render();
     },
+
+    editCat: function(cat) {
+        var success = model.editCat(cat);
+        if(success) {
+            alert("Cat Edited");
+            catView.render();
+            catEditView.hide();
+        }
+        else {
+            alert("Could not find cat!!! Try again with correct or cancel.");
+        }
+
+    },
 };
 
 model = new Model();
+
 controller.init();
+
+

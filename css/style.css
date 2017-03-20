@@ -6,7 +6,7 @@ body {
 
 #header {
     width:100%;
-    height:9vh;
+    height:19vh;
     position:fixed;
     background-color:#293344;
     color:white;
@@ -15,15 +15,38 @@ body {
     z-index:100;
 }
 
-#content {
-    margin-top:10vh;
+#app_name {
     width:100%;
+    height:auto;
+}
+
+#menu {
+    width:100%;
+    height:auto;
+}
+
+#content {
+    margin-top:20vh;
+    width:90%;
+    height:80vh;
     position:absolute;
+}
+
+#cat_edit_div {
+    position:fixed;
+    width:40%;
+    padding:20px;
+    margin-left:30%;
+    height:300px;
+    background-color:white;
+    font-size:20px;
+    box-sizing: border-box;
+    visibility:hidden;
 }
 
 #cat_list {
     width:24%;
-    height:90vh;
+    height:100%;
     color:white;
     float:left;
     border-right:2px solid #6984af;
@@ -32,28 +55,10 @@ body {
 
 #cat_view {
     width:75%;
-    height:90vh;
+    height:100%;
     color:white;
     float:left;
 
-}
-
-.cat_list_item {
-    width:100%;
-    border-bottom:2px solid #6984af;
-    padding:5px 0 5px 0;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.cat_list_item:hover {
-    background-color:#7492c1;
-}
-
-.image {
-    width:100%;
-    padding:30px 0 30px 0;
-    cursor:pointer;
 }
 
 #cat_name {
@@ -67,3 +72,55 @@ body {
     font-size:30px;
     padding-top:10px;
 }
+
+.cat_list_item:hover {
+    background-color:#7492c1;
+}
+
+.image {
+    width:100%;
+    padding:30px 0 30px 0;
+    cursor:pointer;
+}
+
+.cat_list_item {
+    width:100%;
+    border-bottom:2px solid #6984af;
+    padding:5px 0 5px 0;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.menu_item {
+    float:left;
+    margin-left:10px;
+    margin-top:15px;
+    font-size:20px;
+    background-color:#293344;
+    color:white;
+    text-align: center;
+    transition-duration: 0.4s;
+    border: 2px solid #9ec1ff;
+    border-radius:2px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.menu_item:hover {
+    background-color:#9ec1ff;
+    color:#293344;
+}
+
+input[type=text], input[type=number] {
+    width:70%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size:20px;
+}
+
+input[type=button] {
+    float:none;
+    transition-duration: 0s;
+}
+
